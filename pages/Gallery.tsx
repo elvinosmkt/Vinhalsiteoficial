@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { GALLERY_ITEMS, TESTIMONIALS } from '../constants';
 import { GalleryItem } from '../types';
-import { Quote, X } from 'lucide-react';
+import { Quote, X, ZoomIn } from 'lucide-react';
 
 const Gallery: React.FC = () => {
   const [filter, setFilter] = useState('Todos');
@@ -14,76 +14,78 @@ const Gallery: React.FC = () => {
     : GALLERY_ITEMS.filter(item => item.category === filter);
 
   return (
-    <div className="pt-24 min-h-screen bg-white fade-in">
+    <div className="pt-32 min-h-screen bg-neutral-light fade-in">
       
       {/* Header */}
-      <div className="container mx-auto px-4 text-center mb-16">
-        <h1 className="text-4xl md:text-5xl font-serif text-secondary-petrol mb-6">Resultados Reais</h1>
-        <p className="text-neutral-medium max-w-2xl mx-auto">
-            Confira alguns dos resultados transformadores realizados no IAV. 
-            Prezamos pela naturalidade e harmonia de cada face.
+      <div className="container mx-auto px-6 text-center mb-16">
+        <span className="text-primary-gold uppercase tracking-[0.3em] text-xs font-bold mb-4 block">Portfólio</span>
+        <h1 className="text-5xl font-serif text-secondary-petrol mb-6">Resultados Reais</h1>
+        <p className="text-neutral-medium max-w-2xl mx-auto font-light leading-relaxed">
+            Acreditamos na beleza que preserva a identidade. Nossa galeria reflete a busca incessante por naturalidade, simetria e elegância.
         </p>
       </div>
 
-      {/* Filter Tabs */}
-      <div className="container mx-auto px-4 mb-12 overflow-x-auto">
-        <div className="flex justify-center min-w-max space-x-2 md:space-x-4 pb-4">
-            {categories.map(cat => (
-                <button
-                    key={cat}
-                    onClick={() => setFilter(cat)}
-                    className={`px-6 py-2 rounded-full text-sm font-medium transition-all ${
-                        filter === cat 
-                        ? 'bg-secondary-petrol text-white shadow-lg' 
-                        : 'bg-secondary-warmGray text-neutral-medium hover:bg-gray-200'
-                    }`}
-                >
-                    {cat}
-                </button>
-            ))}
-        </div>
+      {/* Filter Tabs - Elegant */}
+      <div className="container mx-auto px-6 mb-12 flex justify-center flex-wrap gap-4">
+        {categories.map(cat => (
+            <button
+                key={cat}
+                onClick={() => setFilter(cat)}
+                className={`px-6 py-2 rounded-full text-xs uppercase tracking-widest transition-all duration-300 border ${
+                    filter === cat 
+                    ? 'bg-secondary-petrol text-white border-secondary-petrol' 
+                    : 'bg-transparent text-neutral-medium border-gray-300 hover:border-secondary-petrol hover:text-secondary-petrol'
+                }`}
+            >
+                {cat}
+            </button>
+        ))}
       </div>
 
-      {/* Grid */}
-      <div className="container mx-auto px-4 mb-24">
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      {/* Grid - Clean Masonry Feel */}
+      <div className="container mx-auto px-6 mb-32">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredItems.map((item) => (
                 <div 
                     key={item.id} 
                     onClick={() => setLightboxItem(item)}
-                    className="aspect-square group relative cursor-pointer overflow-hidden rounded-lg bg-gray-100"
+                    className="group relative cursor-pointer overflow-hidden rounded-sm bg-gray-100 shadow-md hover:shadow-2xl transition-all duration-500"
                 >
-                    <img 
-                        src={item.imageUrl} 
-                        alt={item.title} 
-                        loading="lazy"
-                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                    />
-                    <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-4">
-                        <span className="text-primary-gold text-xs font-bold uppercase">{item.category}</span>
-                        <h4 className="text-white font-serif">{item.title}</h4>
+                    <div className="aspect-[4/5] overflow-hidden">
+                        <img 
+                            src={item.imageUrl} 
+                            alt={item.title} 
+                            loading="lazy"
+                            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 filter grayscale-[20%] group-hover:grayscale-0"
+                        />
+                    </div>
+                    <div className="absolute inset-0 bg-secondary-petrol/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-center items-center text-center p-6">
+                        <ZoomIn className="text-primary-gold w-8 h-8 mb-4 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500" />
+                        <span className="text-primary-gold text-[10px] font-bold uppercase tracking-widest mb-2 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500 delay-75">{item.category}</span>
+                        <h4 className="text-white font-serif text-2xl transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500 delay-100">{item.title}</h4>
                     </div>
                 </div>
             ))}
         </div>
       </div>
 
-      {/* Testimonials */}
-      <section className="bg-secondary-warmGray py-20">
-        <div className="container mx-auto px-4">
-            <h2 className="text-3xl font-serif text-center text-secondary-petrol mb-12">O que dizem nossos pacientes e alunos</h2>
-            <div className="grid md:grid-cols-3 gap-8">
+      {/* Testimonials - Premium Layout */}
+      <section className="bg-secondary-petrol text-white py-24 relative overflow-hidden">
+        <div className="absolute top-0 left-0 w-64 h-64 bg-primary-gold opacity-10 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"></div>
+        <div className="container mx-auto px-6 relative z-10">
+            <h2 className="text-4xl font-serif text-center mb-16">O que dizem sobre o IAV</h2>
+            <div className="grid md:grid-cols-3 gap-10">
                 {TESTIMONIALS.map((t) => (
-                    <div key={t.id} className="bg-white p-8 rounded-xl shadow-sm relative">
-                        <Quote className="absolute top-6 right-6 text-primary-gold/20 w-12 h-12" />
-                        <div className="flex items-center gap-4 mb-6">
-                            <img src={t.imageUrl} alt={t.name} className="w-12 h-12 rounded-full object-cover" />
+                    <div key={t.id} className="bg-white/5 backdrop-blur-md border border-white/10 p-10 rounded-xl relative hover:bg-white/10 transition-colors duration-300">
+                        <Quote className="text-primary-gold w-10 h-10 mb-6 opacity-80" />
+                        <p className="text-white/90 font-light italic leading-relaxed mb-8 min-h-[80px]">"{t.text}"</p>
+                        <div className="flex items-center gap-4">
+                            <img src={t.imageUrl} alt={t.name} className="w-14 h-14 rounded-full object-cover border-2 border-primary-gold" />
                             <div>
-                                <h4 className="font-bold text-secondary-petrol">{t.name}</h4>
-                                <span className="text-xs text-neutral-medium uppercase tracking-wider">{t.role}</span>
+                                <h4 className="font-bold font-serif text-lg">{t.name}</h4>
+                                <span className="text-xs text-primary-gold uppercase tracking-wider">{t.role}</span>
                             </div>
                         </div>
-                        <p className="text-neutral-dark italic leading-relaxed">"{t.text}"</p>
                     </div>
                 ))}
             </div>
@@ -92,14 +94,15 @@ const Gallery: React.FC = () => {
 
       {/* Lightbox */}
       {lightboxItem && (
-        <div className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-4" onClick={() => setLightboxItem(null)}>
-            <button className="absolute top-4 right-4 text-white hover:text-primary-gold">
+        <div className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center p-4 animate-fadeIn" onClick={() => setLightboxItem(null)}>
+            <button className="absolute top-6 right-6 text-white/70 hover:text-white transition-colors">
                 <X className="w-10 h-10" />
             </button>
-            <div className="max-w-4xl w-full max-h-[90vh]" onClick={e => e.stopPropagation()}>
-                <img src={lightboxItem.imageUrl} alt={lightboxItem.title} className="w-full h-full object-contain rounded-lg shadow-2xl" />
-                <div className="bg-white p-4 rounded-b-lg mt-[-4px]">
-                    <h3 className="font-serif text-xl text-secondary-petrol">{lightboxItem.title}</h3>
+            <div className="max-w-5xl w-full max-h-[90vh] flex flex-col items-center" onClick={e => e.stopPropagation()}>
+                <img src={lightboxItem.imageUrl} alt={lightboxItem.title} className="max-w-full max-h-[80vh] object-contain shadow-2xl rounded-sm" />
+                <div className="mt-6 text-center">
+                    <span className="text-primary-gold text-xs font-bold uppercase tracking-widest">{lightboxItem.category}</span>
+                    <h3 className="font-serif text-2xl text-white mt-2">{lightboxItem.title}</h3>
                 </div>
             </div>
         </div>

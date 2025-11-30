@@ -10,6 +10,7 @@ export interface Treatment {
   resultsTime: string;
   afterCare: string;
   imageUrl: string;
+  price?: string;
 }
 
 export interface Course {

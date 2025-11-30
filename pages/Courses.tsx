@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Calendar, Users, Award, ChevronRight, Check } from 'lucide-react';
+import { Calendar, Users, Award, ChevronRight, Check, BookOpen } from 'lucide-react';
 import { COURSES, WHATSAPP_NUMBER } from '../constants';
 import { Course } from '../types';
 
@@ -33,88 +33,131 @@ const Courses: React.FC = () => {
     }, 1000);
   };
 
+  const scrollToForm = () => {
+    const element = document.getElementById('interest-form');
+    element?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  const handleInterest = (course: Course) => {
+    setActiveCourse(course);
+    scrollToForm();
+  };
+
   return (
     <div className="pt-24 min-h-screen bg-white fade-in">
       
       {/* Hero Institute */}
-      <section className="bg-secondary-petrol text-white py-20">
-        <div className="container mx-auto px-4 text-center">
-            <span className="text-primary-gold uppercase tracking-[0.3em] text-xs font-bold mb-4 block">Educação e Excelência</span>
-            <h1 className="text-4xl md:text-6xl font-serif mb-6">Instituto Acadêmico Vinhal</h1>
-            <p className="text-primary-nude max-w-2xl mx-auto text-lg font-light leading-relaxed">
-                Nossa missão é formar profissionais de elite na Harmonização Facial, 
-                combinando embasamento científico rigoroso com prática clínica intensiva (Hands-on).
+      <section className="bg-secondary-petrol text-white py-24 relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-1/3 h-full bg-white/5 skew-x-12 transform translate-x-20"></div>
+        <div className="container mx-auto px-6 text-center relative z-10">
+            <span className="text-primary-gold uppercase tracking-[0.3em] text-xs font-bold mb-6 block animate-fadeIn">Excelência em Ensino</span>
+            <h1 className="text-5xl md:text-7xl font-serif mb-8 animate-slideUp">Instituto Acadêmico <span className="italic">Vinhal</span></h1>
+            <p className="text-white/80 max-w-2xl mx-auto text-lg font-light leading-relaxed mb-10 animate-slideUp delay-100">
+                Formamos a próxima geração de líderes em Harmonização Facial. 
+                Protocolos baseados em evidência científica, anatomia rigorosa e prática clínica intensiva.
             </p>
+             <button 
+                onClick={scrollToForm}
+                className="border border-white/30 text-white px-8 py-3 rounded-full hover:bg-white hover:text-secondary-petrol transition-all uppercase text-xs tracking-widest font-bold"
+            >
+                Entrar na Lista de Espera
+            </button>
         </div>
       </section>
 
-      {/* Why Choose Us */}
-      <section className="py-16 bg-secondary-warmGray/50 border-b border-gray-200">
-         <div className="container mx-auto px-4 flex flex-wrap justify-center gap-12 text-center">
-            <div className="max-w-xs">
-                <Users className="w-10 h-10 text-primary-gold mx-auto mb-4" />
-                <h3 className="font-serif text-lg font-bold text-secondary-petrol">Turmas Reduzidas</h3>
-                <p className="text-sm text-neutral-medium mt-2">Atenção total do professor para você.</p>
+      {/* Pillars */}
+      <section className="py-16 bg-white border-b border-gray-100">
+         <div className="container mx-auto px-6 grid md:grid-cols-3 gap-12 text-center">
+            <div className="p-6">
+                <Users className="w-12 h-12 text-primary-gold mx-auto mb-6" />
+                <h3 className="font-serif text-xl font-bold text-secondary-petrol mb-2">Hands-On Real</h3>
+                <p className="text-sm text-neutral-medium font-light">
+                    Você não apenas assiste. Você atende. Grande volume de pacientes modelo para consolidar sua mão.
+                </p>
             </div>
-            <div className="max-w-xs">
-                <Calendar className="w-10 h-10 text-primary-gold mx-auto mb-4" />
-                <h3 className="font-serif text-lg font-bold text-secondary-petrol">Prática Intensiva</h3>
-                <p className="text-sm text-neutral-medium mt-2">Atendimento real a pacientes modelo.</p>
+            <div className="p-6 border-l border-r border-gray-100">
+                <BookOpen className="w-12 h-12 text-primary-gold mx-auto mb-6" />
+                <h3 className="font-serif text-xl font-bold text-secondary-petrol mb-2">Ciência Aplicada</h3>
+                <p className="text-sm text-neutral-medium font-light">
+                    Protocolos fundamentados em anatomia e fisiologia. Segurança é inegociável.
+                </p>
             </div>
-            <div className="max-w-xs">
-                <Award className="w-10 h-10 text-primary-gold mx-auto mb-4" />
-                <h3 className="font-serif text-lg font-bold text-secondary-petrol">Certificação</h3>
-                <p className="text-sm text-neutral-medium mt-2">Reconhecida e valorizada no mercado.</p>
+            <div className="p-6">
+                <Award className="w-12 h-12 text-primary-gold mx-auto mb-6" />
+                <h3 className="font-serif text-xl font-bold text-secondary-petrol mb-2">Carreira de Sucesso</h3>
+                <p className="text-sm text-neutral-medium font-light">
+                    Mentorias que vão além da técnica: ensinamos posicionamento, vendas e gestão de clínica.
+                </p>
             </div>
          </div>
       </section>
 
       {/* Courses List */}
-      <section className="py-20 container mx-auto px-4">
-        <h2 className="text-3xl font-serif text-secondary-petrol mb-12 text-center">Cursos Disponíveis</h2>
+      <section className="py-24 container mx-auto px-6 bg-secondary-warmGray/20">
+        <h2 className="text-4xl font-serif text-secondary-petrol mb-16 text-center">Agenda de Cursos</h2>
         
-        <div className="grid lg:grid-cols-2 gap-12">
+        <div className="grid lg:grid-cols-1 gap-10 max-w-5xl mx-auto">
             {COURSES.map((course) => (
-                <div key={course.id} className="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden flex flex-col md:flex-row">
-                    <div className="md:w-2/5 h-64 md:h-auto relative">
-                        <img src={course.imageUrl} alt={course.title} className="absolute inset-0 w-full h-full object-cover" />
+                <div key={course.id} className="bg-white rounded-xl shadow-lg hover:shadow-2xl border border-gray-100 overflow-hidden flex flex-col md:flex-row transition-all duration-300 group">
+                    <div className="md:w-1/3 h-64 md:h-auto relative overflow-hidden">
+                        <img 
+                            src={course.imageUrl} 
+                            alt={course.title} 
+                            className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" 
+                        />
+                        <div className="absolute inset-0 bg-secondary-petrol/20"></div>
                         <div className="absolute top-4 left-4">
-                            <span className={`px-3 py-1 rounded-full text-xs font-bold uppercase ${
-                                course.status === 'open' ? 'bg-green-100 text-green-800' : 'bg-amber-100 text-amber-800'
+                            <span className={`px-4 py-1.5 rounded-sm text-[10px] font-bold uppercase tracking-wider ${
+                                course.status === 'open' ? 'bg-white text-secondary-petrol' : 'bg-secondary-petrol text-white'
                             }`}>
                                 {course.status === 'open' ? 'Matrículas Abertas' : 'Lista de Espera'}
                             </span>
                         </div>
                     </div>
-                    <div className="p-8 md:w-3/5 flex flex-col justify-between">
+                    
+                    <div className="p-8 md:p-10 md:w-2/3 flex flex-col justify-between">
                         <div>
-                            <h3 className="text-2xl font-serif text-secondary-petrol mb-2 leading-tight">{course.title}</h3>
-                            <p className="text-sm text-neutral-medium mb-4">{course.shortDescription}</p>
+                            <div className="flex justify-between items-start mb-2">
+                                <h3 className="text-2xl font-serif text-secondary-petrol leading-tight group-hover:text-primary-gold transition-colors">{course.title}</h3>
+                            </div>
+                            <p className="text-neutral-medium font-light mb-6">{course.shortDescription}</p>
                             
-                            <div className="space-y-2 mb-6">
-                                <div className="flex items-center text-sm text-neutral-dark">
-                                    <Calendar className="w-4 h-4 text-primary-gold mr-2" />
-                                    <span>{course.date}</span>
+                            <div className="grid md:grid-cols-2 gap-4 mb-8">
+                                <div className="space-y-2">
+                                    <h4 className="text-xs font-bold text-primary-gold uppercase tracking-wider mb-1">Detalhes</h4>
+                                    <div className="flex items-center text-sm text-neutral-dark font-medium">
+                                        <Calendar className="w-4 h-4 text-neutral-medium mr-2" />
+                                        <span>{course.date}</span>
+                                    </div>
+                                    <div className="flex items-center text-sm text-neutral-dark font-medium">
+                                        <Users className="w-4 h-4 text-neutral-medium mr-2" />
+                                        <span>{course.audience}</span>
+                                    </div>
                                 </div>
-                                <div className="flex items-start text-sm text-neutral-dark">
-                                    <Check className="w-4 h-4 text-primary-gold mr-2 mt-1" />
-                                    <span className="flex-1">{course.details[0]} e muito mais.</span>
+                                <div className="space-y-2">
+                                     <h4 className="text-xs font-bold text-primary-gold uppercase tracking-wider mb-1">O que inclui</h4>
+                                     {course.details.slice(0, 2).map((detail, i) => (
+                                         <div key={i} className="flex items-start text-sm text-neutral-medium">
+                                            <Check className="w-3 h-3 text-green-500 mr-2 mt-1" />
+                                            <span>{detail}</span>
+                                         </div>
+                                     ))}
                                 </div>
                             </div>
                         </div>
                         
-                        <div className="flex gap-4 mt-auto">
+                        <div className="flex gap-4 mt-auto border-t border-gray-100 pt-6">
                             <button 
-                                onClick={() => setActiveCourse(course)}
-                                className="flex-1 bg-secondary-petrol text-white py-3 px-4 rounded text-sm font-medium hover:bg-opacity-90 transition-colors"
+                                onClick={() => handleInterest(course)}
+                                className="flex-1 bg-secondary-petrol text-white py-3 px-6 rounded-sm text-xs font-bold uppercase tracking-widest hover:bg-primary-gold transition-colors"
                             >
-                                Inscrever-se
+                                Receber Ementa Completa
                             </button>
                              <a 
                                 href={`https://wa.me/${WHATSAPP_NUMBER}?text=Olá, sou profissional e tenho interesse no curso ${course.title}`}
                                 target="_blank"
                                 rel="noreferrer"
-                                className="flex items-center justify-center w-12 bg-green-500 text-white rounded hover:bg-green-600 transition-colors"
+                                className="flex items-center justify-center w-12 border border-gray-200 text-secondary-petrol rounded-sm hover:border-secondary-petrol hover:bg-secondary-petrol hover:text-white transition-all"
                             >
                                 <ChevronRight className="w-5 h-5" />
                             </a>
@@ -125,90 +168,108 @@ const Courses: React.FC = () => {
         </div>
       </section>
 
-      {/* Enrollment/Interest Form Section */}
-      <section id="interest-form" className="bg-secondary-warmGray py-20">
-        <div className="container mx-auto px-4 max-w-4xl">
-            <div className="bg-white rounded-2xl shadow-xl p-8 md:p-12">
-                <div className="text-center mb-10">
-                    <h2 className="text-3xl font-serif text-secondary-petrol mb-4">
-                        {activeCourse ? `Interesse: ${activeCourse.title}` : 'Entre na Lista de Espera'}
-                    </h2>
-                    <p className="text-neutral-medium">
-                        Preencha seus dados abaixo e nossa equipe pedagógica entrará em contato para passar a ementa completa e valores.
+      {/* Enrollment/Interest Form Section - Clean & Elegant */}
+      <section id="interest-form" className="bg-secondary-petrol py-24 text-white">
+        <div className="container mx-auto px-6 max-w-6xl">
+            <div className="grid md:grid-cols-2 gap-16 items-center">
+                
+                <div>
+                    <span className="text-primary-gold uppercase tracking-[0.2em] text-xs font-bold mb-4 block">Próximo Passo</span>
+                    <h2 className="text-4xl md:text-5xl font-serif mb-6">Inscreva-se ou tire suas dúvidas.</h2>
+                    <p className="text-white/70 font-light text-lg mb-10 leading-relaxed">
+                        Nossa equipe pedagógica é formada por especialistas prontos para entender seu momento de carreira e indicar o melhor caminho.
                     </p>
+                    <ul className="space-y-6">
+                        <li className="flex items-center gap-4">
+                            <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-primary-gold font-serif text-xl">1</div>
+                            <p className="text-white/80 font-light">Preencha o formulário ao lado.</p>
+                        </li>
+                        <li className="flex items-center gap-4">
+                            <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-primary-gold font-serif text-xl">2</div>
+                            <p className="text-white/80 font-light">Receba o PDF com cronograma e valores.</p>
+                        </li>
+                        <li className="flex items-center gap-4">
+                            <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-primary-gold font-serif text-xl">3</div>
+                            <p className="text-white/80 font-light">Garanta sua vaga na turma exclusiva.</p>
+                        </li>
+                    </ul>
                 </div>
 
-                {formStatus === 'success' ? (
-                    <div className="text-center py-12">
-                        <div className="w-16 h-16 bg-green-100 text-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <Check className="w-8 h-8" />
-                        </div>
-                        <h3 className="text-2xl font-serif text-secondary-petrol mb-2">Mensagem Enviada!</h3>
-                        <p className="text-neutral-medium">Em breve entraremos em contato pelo WhatsApp.</p>
-                        <button onClick={() => setFormStatus('idle')} className="mt-6 text-primary-gold underline">Voltar</button>
-                    </div>
-                ) : (
-                    <form onSubmit={handleSubmit} className="space-y-6">
-                        <div className="grid md:grid-cols-2 gap-6">
-                            <div>
-                                <label className="block text-sm font-medium text-neutral-dark mb-2">Nome Completo *</label>
-                                <input 
-                                    type="text" 
-                                    name="name"
-                                    required
-                                    value={formData.name}
-                                    onChange={handleInputChange}
-                                    className="w-full px-4 py-3 border border-gray-300 rounded focus:ring-2 focus:ring-primary-gold focus:border-transparent outline-none transition-all"
-                                    placeholder="Dra. Ana Silva"
-                                />
+                <div className="bg-white text-neutral-dark rounded-2xl shadow-2xl p-8 md:p-12">
+                    {formStatus === 'success' ? (
+                        <div className="text-center py-12 animate-fadeIn">
+                            <div className="w-20 h-20 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                                <Check className="w-10 h-10" />
                             </div>
-                            <div>
-                                <label className="block text-sm font-medium text-neutral-dark mb-2">WhatsApp *</label>
-                                <input 
-                                    type="tel" 
-                                    name="phone"
-                                    required
-                                    value={formData.phone}
-                                    onChange={handleInputChange}
-                                    className="w-full px-4 py-3 border border-gray-300 rounded focus:ring-2 focus:ring-primary-gold focus:border-transparent outline-none transition-all"
-                                    placeholder="(00) 00000-0000"
-                                />
+                            <h3 className="text-3xl font-serif text-secondary-petrol mb-4">Sucesso!</h3>
+                            <p className="text-neutral-medium mb-8">Recebemos seus dados. Em breve um de nossos consultores entrará em contato via WhatsApp.</p>
+                            <button onClick={() => setFormStatus('idle')} className="text-secondary-petrol font-bold underline hover:text-primary-gold">Enviar novo cadastro</button>
+                        </div>
+                    ) : (
+                        <form onSubmit={handleSubmit} className="space-y-5">
+                            <div className="mb-2">
+                                <h3 className="text-2xl font-serif text-secondary-petrol">Ficha de Interesse</h3>
+                                <p className="text-sm text-neutral-medium">{activeCourse ? `Curso selecionado: ${activeCourse.title}` : 'Preencha para receber contato'}</p>
                             </div>
-                        </div>
-                        <div>
-                            <label className="block text-sm font-medium text-neutral-dark mb-2">E-mail</label>
-                            <input 
-                                type="email" 
-                                name="email"
-                                value={formData.email}
-                                onChange={handleInputChange}
-                                className="w-full px-4 py-3 border border-gray-300 rounded focus:ring-2 focus:ring-primary-gold focus:border-transparent outline-none transition-all"
-                                placeholder="seu@email.com"
-                            />
-                        </div>
-                        <div>
-                            <label className="block text-sm font-medium text-neutral-dark mb-2">Mensagem (opcional)</label>
-                            <textarea 
-                                name="message"
-                                rows={4}
-                                value={formData.message}
-                                onChange={handleInputChange}
-                                className="w-full px-4 py-3 border border-gray-300 rounded focus:ring-2 focus:ring-primary-gold focus:border-transparent outline-none transition-all"
-                                placeholder="Tenho dúvida sobre as datas..."
-                            ></textarea>
-                        </div>
-                        
-                        <button 
-                            type="submit"
-                            className="w-full bg-secondary-petrol text-white font-bold py-4 rounded hover:bg-opacity-90 transition-all shadow-lg"
-                        >
-                            Enviar Interesse
-                        </button>
-                        <p className="text-xs text-center text-neutral-medium mt-4">
-                            Ao enviar, você concorda em receber contato do instituto via WhatsApp.
-                        </p>
-                    </form>
-                )}
+
+                            <div className="space-y-4">
+                                <div>
+                                    <label className="block text-xs font-bold uppercase tracking-wider text-neutral-medium mb-1">Nome Completo</label>
+                                    <input 
+                                        type="text" 
+                                        name="name"
+                                        required
+                                        value={formData.name}
+                                        onChange={handleInputChange}
+                                        className="w-full px-4 py-3 bg-secondary-warmGray border-b-2 border-transparent focus:border-secondary-petrol focus:bg-white outline-none transition-all rounded-t-sm"
+                                        placeholder="Dr(a). Seu Nome"
+                                    />
+                                </div>
+                                <div>
+                                    <label className="block text-xs font-bold uppercase tracking-wider text-neutral-medium mb-1">WhatsApp</label>
+                                    <input 
+                                        type="tel" 
+                                        name="phone"
+                                        required
+                                        value={formData.phone}
+                                        onChange={handleInputChange}
+                                        className="w-full px-4 py-3 bg-secondary-warmGray border-b-2 border-transparent focus:border-secondary-petrol focus:bg-white outline-none transition-all rounded-t-sm"
+                                        placeholder="(DD) 99999-9999"
+                                    />
+                                </div>
+                                <div>
+                                    <label className="block text-xs font-bold uppercase tracking-wider text-neutral-medium mb-1">E-mail Profissional</label>
+                                    <input 
+                                        type="email" 
+                                        name="email"
+                                        value={formData.email}
+                                        onChange={handleInputChange}
+                                        className="w-full px-4 py-3 bg-secondary-warmGray border-b-2 border-transparent focus:border-secondary-petrol focus:bg-white outline-none transition-all rounded-t-sm"
+                                        placeholder="seu@email.com"
+                                    />
+                                </div>
+                                <div>
+                                    <label className="block text-xs font-bold uppercase tracking-wider text-neutral-medium mb-1">Mensagem (Opcional)</label>
+                                    <textarea 
+                                        name="message"
+                                        rows={3}
+                                        value={formData.message}
+                                        onChange={handleInputChange}
+                                        className="w-full px-4 py-3 bg-secondary-warmGray border-b-2 border-transparent focus:border-secondary-petrol focus:bg-white outline-none transition-all rounded-t-sm resize-none"
+                                        placeholder="Tenho interesse na próxima turma..."
+                                    ></textarea>
+                                </div>
+                            </div>
+                            
+                            <button 
+                                type="submit"
+                                className="w-full bg-secondary-petrol text-white font-bold py-4 rounded-sm hover:bg-primary-gold transition-all shadow-lg uppercase tracking-widest text-xs mt-4"
+                            >
+                                Solicitar Contato
+                            </button>
+                        </form>
+                    )}
+                </div>
             </div>
         </div>
       </section>
