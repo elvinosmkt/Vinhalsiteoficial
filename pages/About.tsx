@@ -9,7 +9,7 @@ const About: React.FC = () => {
             <div className="flex flex-col md:flex-row items-center gap-12">
                 <div className="md:w-1/2">
                     <img 
-                        src="https://picsum.photos/id/1025/800/1000" 
+                        src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&q=80&w=800" 
                         alt="Dra. Vinhal" 
                         className="rounded-lg shadow-2xl w-full max-h-[600px] object-cover"
                     />
@@ -60,7 +60,7 @@ const About: React.FC = () => {
                     Situado no coração de Balneário Camboriú, nosso espaço foi projetado para oferecer conforto, privacidade e uma experiência sensorial única.
                 </p>
                 <img 
-                    src="https://picsum.photos/id/1031/1200/500" 
+                    src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&q=80&w=1200" 
                     alt="Clínica Interior" 
                     className="w-full h-80 object-cover rounded-xl shadow-lg"
                 />

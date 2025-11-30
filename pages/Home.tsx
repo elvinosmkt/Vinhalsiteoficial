@@ -11,12 +11,12 @@ const Home: React.FC = () => {
         {/* Background Image with Overlay */}
         <div className="absolute inset-0 z-0">
           <img 
-            src="https://picsum.photos/id/1025/1920/1080" 
-            alt="Clínica Estética" 
+            src="https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?auto=format&fit=crop&q=80&w=2070" 
+            alt="Clínica Estética Luxo" 
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-secondary-petrol/60 mix-blend-multiply"></div>
-          <div className="absolute inset-0 bg-black/30"></div>
+          <div className="absolute inset-0 bg-black/20"></div>
         </div>
 
         <div className="container mx-auto px-4 z-10 text-center text-white">
@@ -52,7 +52,7 @@ const Home: React.FC = () => {
             
             {/* Patient Card */}
             <Link to="/tratamentos" className="group relative overflow-hidden h-96 rounded-xl cursor-pointer">
-              <img src="https://picsum.photos/id/64/800/600" alt="Paciente" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+              <img src="https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&q=80&w=800" alt="Paciente" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/90 to-transparent"></div>
               <div className="absolute bottom-0 left-0 p-8 text-white">
                 <div className="flex items-center gap-3 mb-2 text-primary-gold">
@@ -69,7 +69,7 @@ const Home: React.FC = () => {
 
             {/* Professional Card */}
             <Link to="/cursos" className="group relative overflow-hidden h-96 rounded-xl cursor-pointer">
-              <img src="https://picsum.photos/id/6/800/600" alt="Curso" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+              <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&q=80&w=800" alt="Curso" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
               <div className="absolute inset-0 bg-gradient-to-t from-secondary-petrol/90 to-transparent"></div>
               <div className="absolute bottom-0 left-0 p-8 text-white">
                  <div className="flex items-center gap-3 mb-2 text-primary-gold">
