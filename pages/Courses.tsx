@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Calendar, Users, Award, ChevronRight, Check, BookOpen } from 'lucide-react';
 import { COURSES, WHATSAPP_NUMBER } from '../constants';
@@ -26,11 +27,26 @@ const Courses: React.FC = () => {
         setFormStatus('error');
         return;
     }
-    // Simulate send
+
+    const courseTitle = activeCourse ? activeCourse.title : 'Informações Gerais de Cursos';
+    
+    const message = `Olá! Tenho interesse nos cursos do IAV.
+*Curso:* ${courseTitle}
+*Nome:* ${formData.name}
+*Telefone:* ${formData.phone}
+*E-mail:* ${formData.email}
+*Mensagem:* ${formData.message}`;
+
+    const encodedMessage = encodeURIComponent(message);
+    
+    setFormStatus('success');
+    
+    // Pequeno delay para o usuário ver o feedback de sucesso antes de redirecionar
     setTimeout(() => {
-        setFormStatus('success');
+        window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`, '_blank');
         setFormData({ name: '', email: '', phone: '', message: '' });
-    }, 1000);
+        setFormStatus('idle');
+    }, 1500);
   };
 
   const scrollToForm = () => {
@@ -186,7 +202,7 @@ const Courses: React.FC = () => {
                         </li>
                         <li className="flex items-center gap-4">
                             <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-primary-gold font-serif text-xl">2</div>
-                            <p className="text-white/80 font-light">Receba o PDF com cronograma e valores.</p>
+                            <p className="text-white/80 font-light">Redirecionamento automático para o WhatsApp.</p>
                         </li>
                         <li className="flex items-center gap-4">
                             <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-primary-gold font-serif text-xl">3</div>
@@ -201,9 +217,11 @@ const Courses: React.FC = () => {
                             <div className="w-20 h-20 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-6">
                                 <Check className="w-10 h-10" />
                             </div>
-                            <h3 className="text-3xl font-serif text-secondary-petrol mb-4">Sucesso!</h3>
-                            <p className="text-neutral-medium mb-8">Recebemos seus dados. Em breve um de nossos consultores entrará em contato via WhatsApp.</p>
-                            <button onClick={() => setFormStatus('idle')} className="text-secondary-petrol font-bold underline hover:text-primary-gold">Enviar novo cadastro</button>
+                            <h3 className="text-3xl font-serif text-secondary-petrol mb-4">Quase lá!</h3>
+                            <p className="text-neutral-medium mb-8">Estamos te redirecionando para o WhatsApp do Instituto para finalizar sua pré-inscrição.</p>
+                            <div className="flex justify-center">
+                                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary-gold"></div>
+                            </div>
                         </div>
                     ) : (
                         <form onSubmit={handleSubmit} className="space-y-5">
@@ -265,7 +283,7 @@ const Courses: React.FC = () => {
                                 type="submit"
                                 className="w-full bg-secondary-petrol text-white font-bold py-4 rounded-sm hover:bg-primary-gold transition-all shadow-lg uppercase tracking-widest text-xs mt-4"
                             >
-                                Solicitar Contato
+                                Enviar e Abrir WhatsApp
                             </button>
                         </form>
                     )}

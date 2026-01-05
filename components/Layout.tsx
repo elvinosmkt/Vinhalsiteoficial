@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, Instagram, MapPin, Phone, Mail } from 'lucide-react';
@@ -140,7 +141,7 @@ const Footer: React.FC = () => {
                 </li>
                 <li className="flex items-center gap-4">
                   <Phone className="w-5 h-5 text-primary-gold shrink-0" />
-                  <span>(47) 99999-9999</span>
+                  <span>(47) 97400-9399</span>
                 </li>
                 <li className="flex items-center gap-4">
                   <Mail className="w-5 h-5 text-primary-gold shrink-0" />
@@ -150,8 +151,9 @@ const Footer: React.FC = () => {
               <div>
                 <p className="text-sm text-white/60 font-light leading-relaxed">
                   Atendimento com hora marcada.<br/>
-                  Segunda a Sexta: 09h - 19h<br/>
-                  Sábado: 09h - 13h
+                  Segunda a Sexta: 09h - 20h<br/>
+                  Sábado: 09h - 12h<br/>
+                  Domingo: Fechado
                 </p>
               </div>
             </div>

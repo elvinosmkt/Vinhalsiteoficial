@@ -1,8 +1,9 @@
+
 import { Treatment, Course, Testimonial, GalleryItem } from './types';
 
-export const WHATSAPP_NUMBER = "5547999999999"; 
-export const INSTAGRAM_URL = "https://instagram.com/institutoacademicovinhal";
-export const ADDRESS = "Av. Atlântica, 1234 - Balneário Camboriú, SC";
+export const WHATSAPP_NUMBER = "5547974009399"; 
+export const INSTAGRAM_URL = "https://www.instagram.com/institutoacademicovinhal";
+export const ADDRESS = "Av. Atlântica, 2440 - sala 12 - Centro, Balneário Camboriú - SC, 88330-907";
 
 export const TREATMENTS: Treatment[] = [
   {
