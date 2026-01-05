@@ -170,7 +170,9 @@ const Footer: React.FC = () => {
 
         <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-white/40 font-light">
           <p>&copy; {new Date().getFullYear()} Instituto Acadêmico Vinhal. Todos os direitos reservados.</p>
-          <p className="mt-2 md:mt-0">Design Premium por IAV Studio.</p>
+          <p className="mt-2 md:mt-0">
+            Desenvolvido por <a href="https://www.blendagency.com.br" target="_blank" rel="noreferrer" className="hover:text-primary-gold transition-colors">Blend Agency</a>
+          </p>
         </div>
       </div>
     </footer>
