@@ -109,7 +109,7 @@ export const COURSES: Course[] = [
       'Prática clínica em pacientes reais'
     ],
     price: '12x de R$ 750,00 ou R$ 7.500,00 à vista',
-    imageUrl: 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&q=80&w=800'
+    imageUrl: '/assets/courses/injectables.png'
   },
   {
     id: 'c2',
@@ -127,7 +127,7 @@ export const COURSES: Course[] = [
       'Aulas presenciais Hands-on'
     ],
     price: '12x de R$ 1.000,00 ou R$ 10.000,00 à vista',
-    imageUrl: 'https://images.unsplash.com/photo-1551076805-e1869033e561?auto=format&fit=crop&q=80&w=800'
+    imageUrl: '/assets/courses/technologies.png'
   },
   {
     id: 'c3',
@@ -145,7 +145,7 @@ export const COURSES: Course[] = [
       'Carga horária total de 360h com certificação MEC'
     ],
     price: 'Mensalidades de R$ 300,00 (Consulte taxas de matrícula)',
-    imageUrl: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&q=80&w=800'
+    imageUrl: '/assets/courses/postgrad.png'
   }
 ];
 
